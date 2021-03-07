@@ -1,3 +1,5 @@
+// Array of questions
+
 var questions = [
     {
         question: "This is question 1",
@@ -8,6 +10,16 @@ var questions = [
         question: "This is question 2",
         choices: ["A", "B", "C", "D"],
         answer: "C"
+    },
+    {
+        question: "This is question 3",
+        choices: ["A", "B", "C", "D"],
+        answer: "D"
+    },
+    {
+        question: "This is question 4",
+        choices: ["A", "B", "C", "D"],
+        answer: "B"
     }
 ];
 
@@ -15,6 +27,7 @@ var highScore = document.querySelector(".highscore");
 var timeEl = document.querySelector(".timer");
 var quizStart = document.querySelector(".quizstart");
 var questionGenerator = document.getElementById("questionArea");
+var answersArea = document.getElementById("possibleAnswers");
 var qAnswers = document.querySelector(".answers");
 
 var currentQuestionIndex = 0;
@@ -52,55 +65,43 @@ function startGame() {
 }
 
 function setQuestion() {
+
+    // questions
     var displayQuestion = document.getElementById("QuestionTitle");
     displayQuestion.textContent = questions[currentQuestionIndex].question;
+    // removes all previous buttons before next question
+    answersArea.innerHTML = "";
 
+    // answers
     for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
         var buttonChoice = document.createElement("button");
         buttonChoice.textContent = questions[currentQuestionIndex].choices[i]
         buttonChoice.onclick = checkAnswer;
 
 
-        questionGenerator.appendChild(buttonChoice)
+        answersArea.appendChild(buttonChoice)
     }
 }
 
-function checkAnswer(){
-    if (this.textContent === questions[currentQuestionIndex].answer){
+function checkAnswer() {
+    if (this.textContent === questions[currentQuestionIndex].answer) {
         console.log("Correct")
     } else {
         console.log("Incorrect")
+        //Deduct time from timer
     }
+
+    // Colum tips.....
+    //Check it the timer is less than or equal to 0 
+    //If it is its game over
+    //Else you increment the current question index and call setQuestion again
 }
 
+function endQuiz(){
+    // Colum - Dispaly the highscores from local storage etc 
+}
 
-
-
-// function startGame() {
-//     question = setQuestion(function) () {
-//         questionGenerator.textContent = "Question:" + quizQuestion;
-//     }
-//     // a1 = answer1;
-//     // a2 = answer2;
-//     // a3 = answer3;
-//     // a4 = answer4;
-// }
-
-// function question1 () {
-//     quizQuestion = "Question 1: This is Question1";
-// }
-
-
-
-// // // Question One Prompted
-// function question1 () {
-//     question = "Question 1: This is Question1";
-
-//     answer1 = "answer: correct answer";
-//     answer2 = "answer: incorrect";
-//     answer3 = "answer: incorrect";
-//     answer4 = "answer: incorrect";
-// }
+ // Along the right lines...
 
 //      //correct
 //     if questionGenerator = a1 () {
@@ -113,10 +114,6 @@ function checkAnswer(){
 //         incorrectAnswer--;
 
 //     }
-// }
-
-// function question2 () {
-
 // }
 
 
