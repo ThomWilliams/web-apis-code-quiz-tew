@@ -1,43 +1,78 @@
+var questions = [
+    {
+        question: "This is question 1",
+        choices: ["A", "B", "C", "D"],
+        answer: "A"
+    },
+    {
+        question: "This is question 2",
+        choices: ["A", "B", "C", "D"],
+        answer: "C"
+    }
+];
+
 var highScore = document.querySelector(".highscore");
 var timeEl = document.querySelector(".timer");
 var quizStart = document.querySelector(".quizstart");
-var questionGenerator = document.querySelector(".questiongen");
+var questionGenerator = document.getElementById("questionArea");
 var qAnswers = document.querySelector(".answers");
-var a1 = document.querySelector(".a1");
-var a2 = document.querySelector(".a2");
-var a3 = document.querySelector(".a3");
-var a4 = document.querySelector(".a4");
 
-var correctAnswer = 0;
-var incorrectAnswer = 0;
+var currentQuestionIndex = 0;
 var timer;
 var timerCount = 10;
 
-var question;
-var quizQuestion;
-var answer1;
-var answer2;
-var answer3;
-var answer4;
+var enterInitials;
 
 
-
-// Start Quiz Event Listener
-quizStart.addEventListener("click", startTimer);
+// Start Game with Click Event Listener
+quizStart.addEventListener("click", startGame);
 
 
 // Timer function
-function startTimer () {
-    timer = setInterval(function() {
+function startTimer() {
+    timer = setInterval(function () {
         timerCount--;
         timeEl.textContent = timerCount + " seconds remaining";
         // clock hits zero, reset
         if (timerCount === 0) {
             timeEl.textContent = "Out of Time";
-         clearInterval(timer);
+            clearInterval(timer);
         }
     }, 1000);
 }
+
+
+// Start Game 
+function startGame() {
+    var startArea = document.getElementById("startArea");
+    startArea.setAttribute("class", "hide");
+    questionGenerator.removeAttribute("class");
+    startTimer();
+    setQuestion();
+}
+
+function setQuestion() {
+    var displayQuestion = document.getElementById("QuestionTitle");
+    displayQuestion.textContent = questions[currentQuestionIndex].question;
+
+    for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
+        var buttonChoice = document.createElement("button");
+        buttonChoice.textContent = questions[currentQuestionIndex].choices[i]
+        buttonChoice.onclick = checkAnswer;
+
+
+        questionGenerator.appendChild(buttonChoice)
+    }
+}
+
+function checkAnswer(){
+    if (this.textContent === questions[currentQuestionIndex].answer){
+        console.log("Correct")
+    } else {
+        console.log("Incorrect")
+    }
+}
+
 
 
 
@@ -60,7 +95,7 @@ function startTimer () {
 // // // Question One Prompted
 // function question1 () {
 //     question = "Question 1: This is Question1";
-        
+
 //     answer1 = "answer: correct answer";
 //     answer2 = "answer: incorrect";
 //     answer3 = "answer: incorrect";
@@ -85,30 +120,33 @@ function startTimer () {
 // }
 
 
+
+
+
 /* psuedo code...
 
 - START BUTTON pressed (click event listener)
     - Timer Starts
-    - Question prompted with multiple choice questions. 
+    - Question prompted with multiple choice questions.
     - if incorrect answers, then time deducted
     - User inputs correct answer, new question prompted
     REPEAT
-    - Question prompted with multiple choice questions. 
+    - Question prompted with multiple choice questions.
     - if incorrect answers, then time deducted
     - User inputs correct answer, new question prompted
- 
+
 - END OF QUIZ
  - Quiz Over prompt when all questions completed
  - OR Timer equals zero
 
 
  - ENTER SCORE
- - Score presented in prompt 
- - Enter initials window 
+ - Score presented in prompt
+ - Enter initials window
  - Try again....
 
 
- VARIABLES 
+ VARIABLES
  - Array of Quiz questions
  - Array of answers for each question
  - right answer
