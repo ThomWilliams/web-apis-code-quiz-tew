@@ -13,6 +13,15 @@ var incorrectAnswer = 0;
 var timer;
 var timerCount = 10;
 
+var question;
+var quizQuestion;
+var answer1;
+var answer2;
+var answer3;
+var answer4;
+
+
+
 // Start Quiz Event Listener
 quizStart.addEventListener("click", startTimer);
 
@@ -31,27 +40,49 @@ function startTimer () {
 }
 
 
-// Question One 
-// function question1 () {
 
-//     var question1 = "This Is Question One....";
-//     a1 = "answer: correct";
-//     a2 = "answer: incorrect";
-//     a3 = "answer: incorrect";
-//     a4 = "answer: incorrect";
-
-//     if question1 = correct (a1) {
-//         correctAnswer++
-//         //correct
+// function startGame() {
+//     question = setQuestion(function) () {
+//         questionGenerator.textContent = "Question:" + quizQuestion;
 //     }
-
-//     if question1 = incorrect (a2, a3, a4,) {
-//         incorrectAnswer--
-//         // incorrect
-//     }
-
+//     // a1 = answer1;
+//     // a2 = answer2;
+//     // a3 = answer3;
+//     // a4 = answer4;
 // }
 
+// function question1 () {
+//     quizQuestion = "Question 1: This is Question1";
+// }
+
+
+
+// // // Question One Prompted
+// function question1 () {
+//     question = "Question 1: This is Question1";
+        
+//     answer1 = "answer: correct answer";
+//     answer2 = "answer: incorrect";
+//     answer3 = "answer: incorrect";
+//     answer4 = "answer: incorrect";
+// }
+
+//      //correct
+//     if questionGenerator = a1 () {
+//         correctAnswer++;
+//         question2;
+//     }
+
+//     // incorrect
+//     if questionGenerator = a2, a3, a4 () {
+//         incorrectAnswer--;
+
+//     }
+// }
+
+// function question2 () {
+
+// }
 
 
 /* psuedo code...
