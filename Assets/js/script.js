@@ -2,24 +2,24 @@
 
 var questions = [
     {
-        question: "This is question 1",
-        choices: ["A", "B", "C", "D"],
-        answer: "A"
+        question: "Question 1: Which of these is not a primitive data type?",
+        choices: ["A - Function", "B - Boolean", "C - String", "D - Number"],
+        answer: "A - Function",
     },
     {
-        question: "This is question 2",
-        choices: ["A", "B", "C", "D"],
-        answer: "C"
+        question: "Question 2: To operate, functions do not require...",
+        choices: ["A - Parentheses", "B - Parameters", "C - Square Brackets []", "D - A Function Name"],
+        answer: "C - Square Brackets",
     },
     {
-        question: "This is question 3",
-        choices: ["A", "B", "C", "D"],
-        answer: "D"
+        question: "Question 3: A variable declared in a global scope is...",
+        choices: ["A - A function", "B - Open source for all developers to use", "C - Only available to the local function", "D - Available to use in all functions, in multiple scripts"],
+        answer: "D - Available to use in all functions, in multiple scripts",
     },
     {
-        question: "This is question 4",
+        question: "Question 4: O",
         choices: ["A", "B", "C", "D"],
-        answer: "B"
+        answer: "B",
     }
 ];
 
@@ -28,7 +28,8 @@ var timeEl = document.querySelector(".timer");
 var quizStart = document.querySelector(".quizstart");
 var questionGenerator = document.getElementById("questionArea");
 var answersArea = document.getElementById("possibleAnswers");
-var qAnswers = document.querySelector(".answers");
+var correctIncorrect = document.getElementById("correctIncorrect");
+
 
 var currentQuestionIndex = 0;
 var timer;
@@ -66,22 +67,55 @@ function startGame() {
 
 function setQuestion() {
 
-    // questions
+    // variable to display question output in HTML h2 element
     var displayQuestion = document.getElementById("QuestionTitle");
     displayQuestion.textContent = questions[currentQuestionIndex].question;
     // removes all previous buttons before next question
     answersArea.innerHTML = "";
 
-    // answers
+    // set answers
     for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
+        // answer output
         var buttonChoice = document.createElement("button");
         buttonChoice.textContent = questions[currentQuestionIndex].choices[i]
+
         buttonChoice.onclick = checkAnswer;
+        answersArea.appendChild(buttonChoice);
 
-
-        answersArea.appendChild(buttonChoice)
     }
-}
+    
+    function question1 () {
+    if (questions.question["Question 1: Which of these is not a primitive data type?"]) {
+        questions.choices["A - Function"].addEventListener("click") === true;
+        console.log("Correct");
+        question2;
+    } else { 
+        false;
+        console.log("Incorrect");
+    } question2;
+    }
+    
+    function question2 () {
+    if (questions.question["Question 2: To operate, functions do not require..."]) {
+        questions.choices["C - Square Brackets"].addEventListener("click") === true;
+        console.log("Correct");
+    } else { 
+        false;
+        console.log("Incorrect");
+    } question3;
+    }  
+
+    function question3 () {
+    if (questions.question["Question 3: A variable declared in a global scope is..."]) {
+        questions.choices["D - Available to use in all functions, in multiple scripts"] === true;
+        console.log("Correct");
+    } else { 
+        false;
+        console.log("Incorrect");
+    }
+    }
+    }
+
 
 function checkAnswer() {
     if (this.textContent === questions[currentQuestionIndex].answer) {
@@ -90,6 +124,14 @@ function checkAnswer() {
         console.log("Incorrect")
         //Deduct time from timer
     }
+    
+    // if (this.textContent === questions[currentQuestionIndex].answer) {
+    //     "This is question 2" === "c";
+    //     console.log("Correct")
+    // } else {
+    //     console.log("Incorrect")
+    //     //Deduct time from timer
+    // }
 
     // Colum tips.....
     //Check it the timer is less than or equal to 0 

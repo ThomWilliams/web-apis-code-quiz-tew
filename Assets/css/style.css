@@ -19,7 +19,6 @@ nav {
 }
 
 header {
-    background-color: lightblue;
     max-width: 70%;
     margin-top: 10%;
     margin-left: 15%;
@@ -28,23 +27,28 @@ header {
 }
 
 main {
-    background-color: red;
     max-width: 70%;
     margin-left: 15%;
     margin-right: 15%;
 }
 
-aside {
- background-color: lightgreen;
+ 
+#startArea, #questionArea {
  max-width: 70%;
  margin-left: 15%;
  margin-right: 15%;
 }
+
+
 .hide {
     display: none;
 }
 
-footer {
-    margin-top: 20%;
-    justify-items: center;
+#correctIncorrect {
+
+color: grey;
+margin-top: grey;
+margin-top: 10px;
 }
+
+
