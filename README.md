@@ -78,10 +78,11 @@ A Wave accessibility checker confirms the following features meet accessibility 
 
 # Screenshot
 
-Screenshot of the desktop version is provided in the assets Folder: 
+Screenshots of the desktop and mobile versions is provided in the assets Folder: 
 
-Desktop version: ![Desktop Screenshot 1](web-apis-code-quiz-tew/Assets/Screenshots/Code-quiz-screenshot-1.png)
+Desktop version: ![Desktop Screenshot 1](web-apis-code-quiz-tew/Assets/Screenshots/Code-Quiz-mobile-layout.png)
 Desktop version: ![Desktop Screenshot 2](web-apis-code-quiz-tew/Assets/Screenshots/Code-quiz-screenshot-2.png)
+Desktop version: ![Desktop Screenshot 3](web-apis-code-quiz-tew/Assets/Screenshots/Code-quiz-screenshot-3.png)
 Desktop version: ![Desktop Screenshot 3](web-apis-code-quiz-tew/Assets/Screenshots/Code-quiz-screenshot-3.png)
 
 
