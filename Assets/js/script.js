@@ -1,5 +1,4 @@
 // Array of questions
-
 var questions = [
     {
         question: "Question 1: Which of these is not a primitive data type?",
@@ -30,6 +29,7 @@ var timeEl = document.querySelector(".timer");
 var quizStart = document.querySelector(".quizstart");
 var quizEnd = document.getElementById("EndQuiz");
 var questionGenerator = document.getElementById("questionArea");
+var userFinalscore = document.getElementById("final-score");
 var answersArea = document.getElementById("possibleAnswers");
 var correctIncorrect = document.getElementById("correctIncorrect");
 
@@ -37,11 +37,11 @@ var addHighscoreButton = document.getElementById("enter");
 
 var currentQuestionIndex = 0;
 var timer;
-var timerCount = 45;
+var timerCount = 30;
 var score = 0;
 
-// Start Game with Click Event Listener
-quizStart.addEventListener("click", startGame);
+
+// FUNCTIONS
 
 // Timer function
 function startTimer() {
@@ -66,22 +66,24 @@ function startGame() {
     setQuestion();
 }
 
-// setQuestion sets a question and answers from the array of questions
+
+// setQuestion sets a question and answer from the array
 function setQuestion() {
 
-    // SETS QUESTIONS
+    // Sets Questions
     var displayQuestion = document.getElementById("QuestionTitle");
     displayQuestion.textContent = questions[currentQuestionIndex].question;
     // removes all previous buttons before next question
     answersArea.innerHTML = "";
 
-    // SETS ANSWERS
+    // Sets Answers
     for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
         var answersList = document.createElement("ul");
         answersList.setAttribute("style", "margin: 0; line-height: 2rem")
         var answerItem = document.createElement("li");
         answerItem.setAttribute("style", "list-style-type: none")
 
+        // Button stylings
         var buttonChoice = document.createElement("button");
         buttonChoice.setAttribute("style", "font-size: 15px; background-color: #ff531a; color: white");
         buttonChoice.textContent = questions[currentQuestionIndex].choices[i];
@@ -94,20 +96,19 @@ function setQuestion() {
 }
 
 
-// Check is the answer is correct
+// Checks Answer if correct or incorrect
 function checkAnswer() {
     console.log("Called")
-
     if (this.textContent === questions[currentQuestionIndex].answer) {
         true;
-        console.log("Correct");
-        correctIncorrect.textContent = "Correct";
-        correctIncorrect.setAttribute("style", "color: green; font-size: 10px; font-style: italic;");
+        console.log("Correct!");
+        correctIncorrect.textContent = "Correct!";
+        correctIncorrect.setAttribute("style", "color: green; font-size: 15px; font-style: italic;");
         score += 5
     } else {
         console.log("Incorrect!");
         correctIncorrect.textContent = "Incorrect!";
-        correctIncorrect.setAttribute("style", "color: red; font-size: 10px; font-style: italic;");
+        correctIncorrect.setAttribute("style", "color: red; font-size: 15px; font-style: italic; border-top: 2px;");
 
         timerCount -= 5;
         timeEl.textContent = timerCount + " seconds remaining";
@@ -121,13 +122,17 @@ function checkAnswer() {
     }
 }
 
+// End of Quiz screen
 function endQuiz() {
     var endScreen = document.getElementById("EndQuiz");
     endScreen.removeAttribute("class", "hide");
     questionArea.setAttribute("class", "hide");
+    clearInterval(timer);
+    timeEl.textContent = "Quiz over!";
 }
 
 
+// Add highscore
 function addHighscore () {
     var enterInitials = document.getElementById("initials");
     var playerInitials = enterInitials.value;
@@ -135,7 +140,7 @@ function addHighscore () {
         initials: playerInitials,
         finalScore: score
     };
-
+    
     var previousScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
     previousScores.push(finalScore);
     window.localStorage.setItem("highscores", JSON.stringify(previousScores));
@@ -149,105 +154,12 @@ function addHighscore () {
     } 
 }
 
+// Start Game 
+quizStart.addEventListener("click", startGame);
+
+// Add Highscore
 addHighscoreButton.addEventListener("click", addHighscore); 
 
-
-// function nextQuestion () {
-//     if checkAnswer === true 
-//     questions[currentQuestionIndex].answer++;
-//     else endQuiz };
+localStorage.clear();
 
 
-
-    //Check it the timer is less than or equal to 0 
-    //If it is its game over
-    //Else you increment the current question index and call setQuestion again
-
-
-
-
-    // Display the highscores from local storage etc 
-
-
-
-
-/* psuedo code...
-
-- START BUTTON pressed (click event listener)
-    - Timer Starts
-    - Question prompted with multiple choice questions.
-    - if incorrect answers, then time deducted
-    - User inputs correct answer, new question prompted
-    REPEAT
-    - Question prompted with multiple choice questions.
-    - if incorrect answers, then time deducted
-    - User inputs correct answer, new question prompted
-
-- END OF QUIZ
- - Quiz Over prompt when all questions completed
- - OR Timer equals zero
-
-
- - ENTER SCORE
- - Score presented in prompt
- - Enter initials window
- - Try again....
-
-
- VARIABLES
- - Array of Quiz questions
- - Array of answers for each question
- - right answer
- - wrong answers
- - timer start
- - timercountdown
- - win message
- - lose message
- - score
- - enter intials user input
- - reset button */
-
-
-
-
-
-
-
-
-
- // IS THIS RIGHT?? OR SHOULD I DEFINE CHECK ANSWER
-//     function question1 () {
-//     if (questions.question["Question 1: Which of these is not a primitive data type?"]) {
-//         questions.choices["A - Function"].addEventListener("click") === true;
-//         correctIncorrect.textContent = "Correct";
-//         console.log("Correct");
-//         question2;
-//     } else { 
-//         false;
-//         console.log("Incorrect");
-//     } question2;
-//     }
-
-//     function question2 () {
-//     if (questions.question["Question 2: To operate, functions do not require..."]) {
-//         questions.choices["C - Square Brackets"].addEventListener("click") === true;
-//         correctIncorrect.textContent = "Correct";
-//         console.log("Correct");
-//     } else { 
-//         false;
-//         correctIncorrect.textContent = "Incorrect";
-//         console.log("Incorrect");
-//     } question3;
-//     }  
-
-//     function question3 () {
-//     if (questions.question["Question 3: A variable declared in a global scope is..."]) {
-//         questions.choices["D - Available to use in all functions, in multiple scripts"] === true;
-//         correctIncorrect.textContent = "Correct";
-//         console.log("Correct");
-//     } else { 
-//         false;
-//         correctIncorrect.textContent = "Incorrect";
-//         console.log("Incorrect");
-//     }
-//  }
