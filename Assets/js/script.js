@@ -17,19 +17,23 @@ var questions = [
         answer: "D - Available to use in all functions, in multiple scripts",
     },
     {
-        question: "Question 4: O",
-        choices: ["A", "B", "C", "D"],
+        question: "Question 4: What does DOM stand for?",
+        choices: ["A - Designate Orientate Manoeuvre", "B - Document Object Model", "C - Document Orienteering Method", "D - Design Orchestration Measure"],
         answer: "B",
     }
 ];
 
+var answersList = document.createElement("ol");
+
+
+
+// Variables
 var highScore = document.querySelector(".highscore");
 var timeEl = document.querySelector(".timer");
 var quizStart = document.querySelector(".quizstart");
 var questionGenerator = document.getElementById("questionArea");
 var answersArea = document.getElementById("possibleAnswers");
 var correctIncorrect = document.getElementById("correctIncorrect");
-
 
 var currentQuestionIndex = 0;
 var timer;
@@ -56,7 +60,7 @@ function startTimer() {
 }
 
 
-// Start Game 
+// Start Game function reveals quiz, starts timer, sets question
 function startGame() {
     var startArea = document.getElementById("startArea");
     startArea.setAttribute("class", "hide");
@@ -65,6 +69,7 @@ function startGame() {
     setQuestion();
 }
 
+// setQuestion sets a question from the array of questions
 function setQuestion() {
 
     // variable to display question output in HTML h2 element
@@ -73,91 +78,54 @@ function setQuestion() {
     // removes all previous buttons before next question
     answersArea.innerHTML = "";
 
-    // set answers
+    // set choice of answers from questions.choices
     for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
         // answer output
+        
         var buttonChoice = document.createElement("button");
+        buttonChoice.setAttribute("style", "font-size: 15px; background-color: #ff531a; color: white");
         buttonChoice.textContent = questions[currentQuestionIndex].choices[i]
 
         buttonChoice.onclick = checkAnswer;
         answersArea.appendChild(buttonChoice);
+    }
+}
 
-    }
-    
-    function question1 () {
-    if (questions.question["Question 1: Which of these is not a primitive data type?"]) {
-        questions.choices["A - Function"].addEventListener("click") === true;
-        console.log("Correct");
-        question2;
-    } else { 
-        false;
-        console.log("Incorrect");
-    } question2;
-    }
-    
-    function question2 () {
-    if (questions.question["Question 2: To operate, functions do not require..."]) {
-        questions.choices["C - Square Brackets"].addEventListener("click") === true;
-        console.log("Correct");
-    } else { 
-        false;
-        console.log("Incorrect");
-    } question3;
-    }  
-
-    function question3 () {
-    if (questions.question["Question 3: A variable declared in a global scope is..."]) {
-        questions.choices["D - Available to use in all functions, in multiple scripts"] === true;
-        console.log("Correct");
-    } else { 
-        false;
-        console.log("Incorrect");
-    }
-    }
-    }
-
+// Check is the answer is correct
 
 function checkAnswer() {
     if (this.textContent === questions[currentQuestionIndex].answer) {
-        console.log("Correct")
+        choices === answer;
+        console.log("Correct");
     } else {
         console.log("Incorrect")
         //Deduct time from timer
+        (timerCount --);
     }
-    
-    // if (this.textContent === questions[currentQuestionIndex].answer) {
-    //     "This is question 2" === "c";
-    //     console.log("Correct")
-    // } else {
-    //     console.log("Incorrect")
-    //     //Deduct time from timer
-    // }
+}
 
-    // Colum tips.....
+
+
+// function nextQuestion () {
+//     if checkAnswer === true 
+//     questions[currentQuestionIndex].answer++;
+//     else endQuiz };
+
+
+
+// Colum tips.....
     //Check it the timer is less than or equal to 0 
     //If it is its game over
     //Else you increment the current question index and call setQuestion again
-}
 
-function endQuiz(){
+function endQuiz() {
+    if (timer <= 0); 
+    alert("Game Over!");
+    } 
+    
+
+
     // Colum - Dispaly the highscores from local storage etc 
-}
-
- // Along the right lines...
-
-//      //correct
-//     if questionGenerator = a1 () {
-//         correctAnswer++;
-//         question2;
-//     }
-
-//     // incorrect
-//     if questionGenerator = a2, a3, a4 () {
-//         incorrectAnswer--;
-
-//     }
-// }
-
 
 
 
@@ -198,3 +166,47 @@ function endQuiz(){
  - enter intials user input
  - reset button */
 
+
+
+
+
+
+
+
+
+ // IS THIS RIGHT?? OR SHOULD I DEFINE CHECK ANSWER
+//     function question1 () {
+//     if (questions.question["Question 1: Which of these is not a primitive data type?"]) {
+//         questions.choices["A - Function"].addEventListener("click") === true;
+//         correctIncorrect.textContent = "Correct";
+//         console.log("Correct");
+//         question2;
+//     } else { 
+//         false;
+//         console.log("Incorrect");
+//     } question2;
+//     }
+
+//     function question2 () {
+//     if (questions.question["Question 2: To operate, functions do not require..."]) {
+//         questions.choices["C - Square Brackets"].addEventListener("click") === true;
+//         correctIncorrect.textContent = "Correct";
+//         console.log("Correct");
+//     } else { 
+//         false;
+//         correctIncorrect.textContent = "Incorrect";
+//         console.log("Incorrect");
+//     } question3;
+//     }  
+
+//     function question3 () {
+//     if (questions.question["Question 3: A variable declared in a global scope is..."]) {
+//         questions.choices["D - Available to use in all functions, in multiple scripts"] === true;
+//         correctIncorrect.textContent = "Correct";
+//         console.log("Correct");
+//     } else { 
+//         false;
+//         correctIncorrect.textContent = "Incorrect";
+//         console.log("Incorrect");
+//     }
+//  }
