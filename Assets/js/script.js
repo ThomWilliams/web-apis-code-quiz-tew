@@ -161,6 +161,5 @@ quizStart.addEventListener("click", startGame);
 // Add Highscore
 addHighscoreButton.addEventListener("click", addHighscore); 
 
-localStorage.clear();
 
 

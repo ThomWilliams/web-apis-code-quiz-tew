@@ -6,7 +6,7 @@ Task for week 4 of the University of Manchester Coding Bootcamp course.
 
 The application creates an interactive coding quiz using WEB API's. 
 
-This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript. The UI has been designed with a clean, polished, and accessible interface. 
+This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript. The UI has been designed with a clean, polished, and accessible interface designed for mobile and desktop. 
 
 
 ## Installing / Getting started
@@ -57,6 +57,7 @@ Key Features include:
 * At the end, the User is able to submit their intials and recive their score, plus view previous player's scores. The scores are saved using local storage. 
 * It has a clean, simple, accessible and user-friendly design. 
 * The colour scheme has been modified from the example provided for aesthetic purposes.
+* Mobile responsive design.
 
 ## Links
 
