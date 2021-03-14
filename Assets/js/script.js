@@ -32,17 +32,16 @@ var quizEnd = document.getElementById("EndQuiz");
 var questionGenerator = document.getElementById("questionArea");
 var answersArea = document.getElementById("possibleAnswers");
 var correctIncorrect = document.getElementById("correctIncorrect");
-var enterInitials = document.getElementById("initials");
+
+var addHighscoreButton = document.getElementById("enter");
 
 var currentQuestionIndex = 0;
 var timer;
-var timerCount = 10;
-
-
+var timerCount = 45;
+var score = 0;
 
 // Start Game with Click Event Listener
 quizStart.addEventListener("click", startGame);
-
 
 // Timer function
 function startTimer() {
@@ -53,11 +52,10 @@ function startTimer() {
         if (timerCount === 0) {
             timeEl.textContent = "Out of Time";
             clearInterval(timer);
-            endQuiz;
+            endQuiz();
         }
     }, 1000);
 }
-
 
 // Start Game function reveals quiz, starts timer, sets question
 function startGame() {
@@ -79,53 +77,56 @@ function setQuestion() {
 
     // SETS ANSWERS
     for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
-       var answersList = document.createElement("ul");
-       answersList.setAttribute("style", "margin: 0; line-height: 2rem")
-       var answerItem = document.createElement("li");
-       answerItem.setAttribute("style", "list-style-type: none")
+        var answersList = document.createElement("ul");
+        answersList.setAttribute("style", "margin: 0; line-height: 2rem")
+        var answerItem = document.createElement("li");
+        answerItem.setAttribute("style", "list-style-type: none")
 
         var buttonChoice = document.createElement("button");
         buttonChoice.setAttribute("style", "font-size: 15px; background-color: #ff531a; color: white");
-        buttonChoice.textContent = questions[currentQuestionIndex].choices[i]
+        buttonChoice.textContent = questions[currentQuestionIndex].choices[i];
 
         answerItem.appendChild(buttonChoice);
         answersList.appendChild(answerItem);
         answersArea.appendChild(answersList);
-
         buttonChoice.onclick = checkAnswer;
-
     }
 }
 
-// Check is the answer is correct
 
+// Check is the answer is correct
 function checkAnswer() {
+    console.log("Called")
+
     if (this.textContent === questions[currentQuestionIndex].answer) {
         true;
         console.log("Correct");
-        var correct = document.getElementById("correctIncorrect");
-        correct.textContent("Correct!");
-        correct.setAttribute("style", "color: green; font-size: 10px; font-style: italic;");
-        correctIncorrect.appendChild(correct);
-        currentQuestionIndex++;
+        correctIncorrect.textContent = "Correct";
+        correctIncorrect.setAttribute("style", "color: green; font-size: 10px; font-style: italic;");
+        score += 5
     } else {
-        var incorrect = document.getElementById("correctIncorrect");
         console.log("Incorrect!");
-        incorrect.textContent("Incorrect!");
-        incorrect.setAttribute("style", "color: red; font-size: 10px; font-style: italic;");
-        correctIncorrect.appendChild(incorrect);
-        timerCount --;
+        correctIncorrect.textContent = "Incorrect!";
+        correctIncorrect.setAttribute("style", "color: red; font-size: 10px; font-style: italic;");
+
+        timerCount -= 5;
+        timeEl.textContent = timerCount + " seconds remaining";
+    }
+    currentQuestionIndex++;
+    console.log(currentQuestionIndex, questions.length)
+    if (currentQuestionIndex === questions.length) {
+        endQuiz()
+    } else {
+        setQuestion()
     }
 }
-
 
 function endQuiz() {
     var endScreen = document.getElementById("EndQuiz");
     endScreen.removeAttribute("class", "hide");
-
-    // all questions answered!
+    questionArea.setAttribute("class", "hide");
 }
- 
+
 
 
 
