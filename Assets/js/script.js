@@ -128,7 +128,28 @@ function endQuiz() {
 }
 
 
+function addHighscore () {
+    var enterInitials = document.getElementById("initials");
+    var playerInitials = enterInitials.value;
+    var finalScore = {
+        initials: playerInitials,
+        finalScore: score
+    };
 
+    var previousScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    previousScores.push(finalScore);
+    window.localStorage.setItem("highscores", JSON.stringify(previousScores));
+
+    for (var i = 0; i < previousScores.length; i++) {
+        var entry = document.createElement("li");
+        entry.textContent = previousScores[i].initials + " : " + previousScores[i].finalScore;
+        entry.setAttribute("style", "list-style-type: none; margin-left: none")
+        var scoresList = document.getElementById("highscores");
+        scoresList.appendChild(entry)
+    } 
+}
+
+addHighscoreButton.addEventListener("click", addHighscore); 
 
 
 // function nextQuestion () {
