@@ -28,17 +28,15 @@ var questions = [
 var highScore = document.querySelector(".highscore");
 var timeEl = document.querySelector(".timer");
 var quizStart = document.querySelector(".quizstart");
+var quizEnd = document.getElementById("EndQuiz");
 var questionGenerator = document.getElementById("questionArea");
 var answersArea = document.getElementById("possibleAnswers");
 var correctIncorrect = document.getElementById("correctIncorrect");
+var enterInitials = document.getElementById("initials");
 
 var currentQuestionIndex = 0;
 var timer;
 var timerCount = 10;
-
-var enterInitials;
-
-
 
 
 
@@ -103,25 +101,32 @@ function setQuestion() {
 
 function checkAnswer() {
     if (this.textContent === questions[currentQuestionIndex].answer) {
-        (choices === true);
+        true;
         console.log("Correct");
-        correctIncorrect.textContent("Correct!");
-        correctIncorrect.setAttribute("style", "color: green; font-size: 10px; font-style: italic;");
+        var correct = document.getElementById("correctIncorrect");
+        correct.textContent("Correct!");
+        correct.setAttribute("style", "color: green; font-size: 10px; font-style: italic;");
+        correctIncorrect.appendChild(correct);
         currentQuestionIndex++;
     } else {
-        correctIncorrect.textContent("Incorrect!");
-        correctIncorrect.setAttribute("style", "color: red; font-size: 10px; font-style: italic;");
-        (timerCount--);
+        var incorrect = document.getElementById("correctIncorrect");
+        console.log("Incorrect!");
+        incorrect.textContent("Incorrect!");
+        incorrect.setAttribute("style", "color: red; font-size: 10px; font-style: italic;");
+        correctIncorrect.appendChild(incorrect);
+        timerCount --;
     }
 }
 
+
 function endQuiz() {
-    if (timer <= 0); 
-    else // all questions answered!!!!!! 
-    enterInitials = prompt("Thanks for playing! Please enter your initals here");
+    var endScreen = document.getElementById("EndQuiz");
+    endScreen.removeAttribute("class", "hide");
+
+    // all questions answered!
 }
  
-   
+
 
 
 
@@ -139,7 +144,7 @@ function endQuiz() {
 
 
 
-    // Colum - Dispaly the highscores from local storage etc 
+    // Display the highscores from local storage etc 
 
 
 
