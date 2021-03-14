@@ -19,12 +19,9 @@ var questions = [
     {
         question: "Question 4: What does DOM stand for?",
         choices: ["A - Designate Orientate Manoeuvre", "B - Document Object Model", "C - Document Orienteering Method", "D - Design Orchestration Measure"],
-        answer: "B",
+        answer: "B - Document Object Model",
     }
 ];
-
-var answersList = document.createElement("ol");
-
 
 
 // Variables
@@ -42,6 +39,9 @@ var timerCount = 10;
 var enterInitials;
 
 
+
+
+
 // Start Game with Click Event Listener
 quizStart.addEventListener("click", startGame);
 
@@ -55,6 +55,7 @@ function startTimer() {
         if (timerCount === 0) {
             timeEl.textContent = "Out of Time";
             clearInterval(timer);
+            endQuiz;
         }
     }, 1000);
 }
@@ -69,25 +70,32 @@ function startGame() {
     setQuestion();
 }
 
-// setQuestion sets a question from the array of questions
+// setQuestion sets a question and answers from the array of questions
 function setQuestion() {
 
-    // variable to display question output in HTML h2 element
+    // SETS QUESTIONS
     var displayQuestion = document.getElementById("QuestionTitle");
     displayQuestion.textContent = questions[currentQuestionIndex].question;
     // removes all previous buttons before next question
     answersArea.innerHTML = "";
 
-    // set choice of answers from questions.choices
+    // SETS ANSWERS
     for (var i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
-        // answer output
-        
+       var answersList = document.createElement("ul");
+       answersList.setAttribute("style", "margin: 0; line-height: 2rem")
+       var answerItem = document.createElement("li");
+       answerItem.setAttribute("style", "list-style-type: none")
+
         var buttonChoice = document.createElement("button");
         buttonChoice.setAttribute("style", "font-size: 15px; background-color: #ff531a; color: white");
         buttonChoice.textContent = questions[currentQuestionIndex].choices[i]
 
+        answerItem.appendChild(buttonChoice);
+        answersList.appendChild(answerItem);
+        answersArea.appendChild(answersList);
+
         buttonChoice.onclick = checkAnswer;
-        answersArea.appendChild(buttonChoice);
+
     }
 }
 
@@ -95,14 +103,25 @@ function setQuestion() {
 
 function checkAnswer() {
     if (this.textContent === questions[currentQuestionIndex].answer) {
-        choices === answer;
+        (choices === true);
         console.log("Correct");
+        correctIncorrect.textContent("Correct!");
+        correctIncorrect.setAttribute("style", "color: green; font-size: 10px; font-style: italic;");
+        currentQuestionIndex++;
     } else {
-        console.log("Incorrect")
-        //Deduct time from timer
-        (timerCount --);
+        correctIncorrect.textContent("Incorrect!");
+        correctIncorrect.setAttribute("style", "color: red; font-size: 10px; font-style: italic;");
+        (timerCount--);
     }
 }
+
+function endQuiz() {
+    if (timer <= 0); 
+    else // all questions answered!!!!!! 
+    enterInitials = prompt("Thanks for playing! Please enter your initals here");
+}
+ 
+   
 
 
 
@@ -113,16 +132,11 @@ function checkAnswer() {
 
 
 
-// Colum tips.....
     //Check it the timer is less than or equal to 0 
     //If it is its game over
     //Else you increment the current question index and call setQuestion again
 
-function endQuiz() {
-    if (timer <= 0); 
-    alert("Game Over!");
-    } 
-    
+
 
 
     // Colum - Dispaly the highscores from local storage etc 
