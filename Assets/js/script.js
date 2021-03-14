@@ -141,6 +141,7 @@ function addHighscore () {
         finalScore: score
     };
     
+    // Stores previous players scores in local storage
     var previousScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
     previousScores.push(finalScore);
     window.localStorage.setItem("highscores", JSON.stringify(previousScores));
